@@ -49,7 +49,8 @@ export default {
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/firebase'
   ],
   /*
    ** Axios module configuration
@@ -75,6 +76,40 @@ export default {
           success: colors.green.accent3
         }
       }
+    }
+  },
+  firebase: {
+    config: {
+      apiKey: 'AIzaSyBVl5ccISLIQ38T32vbJP1DFFfMRcxhdAQ',
+      authDomain: 'walkie-talkie-12a5e.firebaseapp.com',
+      databaseURL: 'https://walkie-talkie-12a5e.firebaseio.com',
+      projectId: 'walkie-talkie-12a5e',
+      storageBucket: 'walkie-talkie-12a5e.appspot.com',
+      messagingSenderId: '1087934909912',
+      appId: '1:1087934909912:web:73c6f5e04cef3bb8d676ad',
+      measurementId: 'G-GRL7K1XRGD',
+      fcmPublicVapidKey:
+        'BEKVpNqJl9Kq0Ma_IIDYOHjx8cMRstQkBIeNAhYb86JhshxiUqcGQJYlCnSce6WK5g-sd_1ZtcREwYgAMmW7p9A'
+    },
+    services: {
+      auth: {
+        ssr: true,
+        initialize: {
+          onAuthStateChangedMutation: 'ON_AUTH_STATE_CHANGED_MUTATION'
+        }
+      },
+      firestore: true,
+      storage: true,
+      messaging: {
+        createServiceWorker: true
+      },
+      performance: true,
+      analytics: true
+    }
+  },
+  pwa: {
+    workbox: {
+      importScripts: ['/firebase-auth-sw.js', '/firebase-messaging-sw.js']
     }
   },
   /*
